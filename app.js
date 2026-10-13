@@ -22,9 +22,6 @@ document.querySelectorAll('[data-feed-filter]').forEach(button=>button.addEventL
 async function refreshFeed(){try{const res=await fetch('/api/instagram');if(!res.ok)return;const data=await res.json();if(data.posts?.length){currentFeed=data.posts;renderFeed(currentFeed);document.querySelector('#feed-status').textContent=data.stale?'Instagram connection temporarily unavailable · showing last synced posts.':'Connected to Instagram · latest uploads refresh automatically';}}catch{ /* Selected posts remain available when the connection is unavailable. */ }}
 refreshFeed();setInterval(refreshFeed,5*60*1000);
 document.querySelectorAll('.select-character').forEach(button=>button.addEventListener('click',()=>{document.querySelector('#character-select').value=button.dataset.character;document.querySelector('#collaborate').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});document.querySelector('#character-select').focus({preventScroll:true});}));
-document.querySelector('#collab-form').addEventListener('submit',event=>{event.preventDefault();const f=new FormData(event.currentTarget);const brief=`Hi Tiny Smiles! I'd like to discuss a collaboration.\n\nName: ${f.get('name')}\nBrand: ${f.get('brand')}\nBusiness email: ${f.get('email')}\nProduct category: ${f.get('category')}\nCharacters: ${f.get('character')}\nFormat: ${f.get('type')}\nBudget: ${f.get('budget')}\nTimeline: ${f.get('timeline')||'Let’s discuss'}\n\nCampaign idea:\n${f.get('idea')}`;document.querySelector('#brief-text').value=brief;document.querySelector('#email-brief').href='mailto:tinysmileskidstv@gmail.com?subject='+encodeURIComponent('Tiny Smiles collaboration — '+f.get('brand'))+'&body='+encodeURIComponent(brief);document.querySelector('#brief-result').hidden=false;document.querySelector('#brief-result').scrollIntoView({behavior:'smooth',block:'center'});});
-document.querySelector('#copy-brief').addEventListener('click',async()=>{const field=document.querySelector('#brief-text');try{await navigator.clipboard.writeText(field.value);document.querySelector('#copy-status').textContent='Copied! Send it by email or in a message to @tinysmileskidstv.';}catch{field.focus();field.select();document.querySelector('#copy-status').textContent='Select and copy the inquiry, then send it by email or Instagram.';}});
-document.querySelector('#collab-form').addEventListener('submit',()=>{document.querySelector('#whatsapp-brief').href='https://wa.me/923254313433?text='+encodeURIComponent(document.querySelector('#brief-text').value);});
 const menuToggle=document.querySelector('#menu-toggle');
 menuToggle.addEventListener('click',()=>{const open=menuToggle.getAttribute('aria-expanded')!=='true';menuToggle.setAttribute('aria-expanded',String(open));document.querySelector('#site-nav').classList.toggle('open',open);});
 document.querySelectorAll('#site-nav a').forEach(a=>a.addEventListener('click',()=>{menuToggle.setAttribute('aria-expanded','false');document.querySelector('#site-nav').classList.remove('open');}));
@@ -33,3 +30,13 @@ document.querySelectorAll('[data-category]').forEach(button=>button.addEventList
 
 const heroVideo=document.querySelector('#hero-video');
 if(heroVideo)heroVideo.play().catch(()=>{});
+
+// Service choices transfer a useful starting point into the existing inquiry.
+document.querySelectorAll('[data-service-type]').forEach(button=>button.addEventListener('click',()=>{
+ const form=document.querySelector('#collab-form');
+ form.elements.type.value=button.dataset.serviceType;
+ form.elements.character.value=button.dataset.serviceCharacter;
+ if(!form.elements.idea.value.trim())form.elements.idea.value="I'd like to discuss "+button.dataset.serviceType.toLowerCase()+" for our brand. Please help us shape the creative direction.";
+ document.querySelector('#collaborate').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ form.elements.brand.focus({preventScroll:true});
+}));
