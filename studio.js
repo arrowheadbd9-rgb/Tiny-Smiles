@@ -10,7 +10,7 @@ const studioCategories={
 };
 const studioCasts={
   emaan:{label:'Emaan',value:'Emaan',image:'assets/emaan-fashion.jpg',scene:'Emaan introduces the idea with her signature personality.'},
-  couple:{label:'the couple',value:'Emaan & Her Partner',image:'assets/latest-couple.jpg',scene:'Emaan and her partner bring the idea to life through playful conversation.'},
+  couple:{label:'the couple',value:'Emaan & Waseeq',image:'assets/latest-couple.jpg',scene:'Emaan and Waseeq bring the idea to life through playful conversation.'},
   family:{label:'the complete family',value:'The Tiny Smiles Family',image:'assets/family.png',scene:'The whole family gives the scene different voices and reactions.'},
   kids:{label:'the little stars',value:'Zara & Ayaan',image:'assets/couple.jpg',scene:'Zara and Ayaan bring playful expressions and little surprises.'}
 };

@@ -1,7 +1,7 @@
 const reels = [
   {id:'DcbRgtfkYBO', image:'besties.jpg', category:'BESTIE COMEDY', title:'The bestie with all the answers'},
   {id:'DcgZlnDANpL', image:'couple.jpg', category:'LITTLE STARS', title:'Brains or money? A very cheeky answer'},
-  {id:'DeZaZG-jIt4', image:'latest-couple.jpg', category:'OUR LATEST COUPLE', title:'Everyday life, with Emaan and her partner'},
+  {id:'DeZaZG-jIt4', image:'latest-couple.jpg', category:'OUR LATEST COUPLE', title:'Everyday life, with Emaan and Waseeq'},
   {id:'DcVwgzujPsI', image:'moment.jpg', category:'ANIMATED STORIES', title:'A little imagination after dark'}
 ];
 const featured = document.querySelector('#featured');
@@ -9,7 +9,7 @@ reels.forEach(r => { const a=document.createElement('a'); a.className='reel-card
 const feed=document.querySelector('#instagram-feed');
 let currentFeed=[
   {id:'DeZenzNlPq-',image:'latest-besties.jpg',caption:'Best friends. Unexpected comebacks.'},
-  {id:'DeZaZG-jIt4',image:'latest-couple.jpg',caption:'Emaan and her partner: everyday desi life.'},
+  {id:'DeZaZG-jIt4',image:'latest-couple.jpg',caption:'Emaan and Waseeq: everyday desi life.'},
   {id:'DeUTSQKAYiA',image:'couple-conversation.jpg',caption:'When the conversation takes a comic turn.'},
   {id:'DeUQWT5kgro',image:'emaan-fashion.jpg',caption:'Emaan’s wedding season look.'},
   {id:'DeSMYXKRk-S',image:'couple-love.jpg',caption:'Some moments say more than words.'},
